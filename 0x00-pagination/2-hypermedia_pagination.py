@@ -3,7 +3,7 @@
 """
 import csv
 import math
-from typing import List, Tuple, Dict, Optional
+from typing import List, Tuple, Dict, Any
 
 
 class Server:
@@ -48,7 +48,7 @@ class Server:
             start += 1
         return data
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
         """Arguments:
                 page: int
                 page_size: int
