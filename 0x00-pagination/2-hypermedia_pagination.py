@@ -33,10 +33,10 @@ class Server:
                 list of records in a given page
         """
         data = []
-        assert isinstance(page, int) and \
-            page > 0, "page must be positive integer"
-        assert isinstance(page_size, int) and \
-            page_size > 0, "page_size must be positive integer"
+        assert isinstance(page, int)
+        assert page > 0
+        assert isinstance(page_size, int)
+        assert page_size > 0
         start, end = index_range(page, page_size)
         index = 0
         returned = self.dataset()
