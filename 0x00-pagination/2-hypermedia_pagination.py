@@ -2,7 +2,7 @@
 
 import csv
 import math
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Optional
 
 
 def index_range(page: int, page_size: int) -> Tuple:
@@ -66,14 +66,15 @@ class Server:
         """
         total_pages = (len(self.dataset()) + page_size - 1) // page_size
         data = self.get_page(page, page_size)
-        next_page = page + 1
+        next_page: Optional[int] = page + 1
+        prev_page: Optional[int] = page - 1
 
-        if next_page == 0 or data == []:
+        if next_page == 0 or len(data) == []:
             next_page = None
-        prev_page = page - 1
 
         if prev_page == 0:
             prev_page = None
+
         page_size = len(data)
         hyper = {'page_size': page_size, 'page': page, 'data': data,
                  'next_page': next_page, 'prev_page': prev_page,
