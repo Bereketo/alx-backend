@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-
+"""simple pagination
+"""
 import csv
-import math
 from typing import List, Tuple
 
 
@@ -35,11 +35,13 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """Returns records of a page
+        """
         data = []
-        assert isinstance(page, int) and \
-            page > 0, "page must be positive integer"
-        assert isinstance(page_size, int) and \
-            page_size > 0, "page_size must be positive integer"
+        assert isinstance(page, int)
+        assert page > 0
+        assert isinstance(page_size, int)
+        assert page_size > 0
         start, end = index_range(page, page_size)
         index = 0
         returned = self.dataset()
