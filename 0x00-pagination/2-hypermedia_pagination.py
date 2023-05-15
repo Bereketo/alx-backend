@@ -2,6 +2,7 @@
 """Hypemedia pagination
 """
 import csv
+import math
 from typing import List, Tuple, Dict, Optional
 
 
@@ -64,7 +65,7 @@ class Server:
            Returns:
                 dictionary
         """
-        total_pages = (len(self.dataset()) + page_size - 1) // page_size
+        total_pages = math.ceil(len(self.dataset()) / page_size)
         data = self.get_page(page, page_size)
         next_page = page + 1 if page + 1 <= total_pages else None
         prev_page = page - 1 if page > 1 else None
