@@ -33,9 +33,7 @@ class Server:
                 list of records in a given page
         """
         data = []
-        assert isinstance(page, int)
         assert page > 0
-        assert isinstance(page_size, int)
         assert page_size > 0
         start, end = index_range(page, page_size)
         index = 0
