@@ -69,7 +69,7 @@ class Server:
         next_page: Optional[int] = page + 1
         prev_page: Optional[int] = page - 1
 
-        if next_page == 0 or len(data) == []:
+        if int(next_page) == 0 or int(next_page) > total_pages:
             next_page = None
 
         if prev_page == 0:
