@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Babel setup
+"""
 
 from flask_babel import Babel
 from flask import Flask, render_template
@@ -13,6 +15,7 @@ app.config['TIMEZONE'] = 'UTC'
 
 @app.route('/')
 def index():
+    "renders a template"
     return render_template('1-index.html')
 
 
