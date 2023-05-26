@@ -41,24 +41,21 @@ def get_locale():
 # babel.init_app(app, locale_selector=get_locale)
 
 
-def get_user(user_id):
+def get_user():
     """returns a user dictionary """
-    if user_id not in users.keys() or user_id is None:
-        return None
-    print(users[user_id])
-    return users[user_id]
+    try:
+        user_id = request.args.get('login_as')
+        usr = users[int(user_id)]
+    except e:
+        usr = None
+    return usr
 
 
 @app.before_request
 def before_request():
     """executed before all other"""
-    user_id = request.args.get('login_as')
-    usr = None
-    if user_id is not None:
-        usr = get_user(int(user_id))
-    if usr is not None:
-        g.user = usr
-    return None
+    user = get_user()
+    g.user = user
 
 
 @app.route('/')
