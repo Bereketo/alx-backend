@@ -25,10 +25,11 @@ class Config:
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
-@babel.localeselector
+#@babel.localeselector
 def get_locale() -> str:
     """determines best match language
     """
@@ -39,10 +40,10 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-# babel.init_app(app, locale_selector=get_locale)
+babel.init_app(app, locale_selector=get_locale)
 
 
-def get_user() -> Union[Dict, None]:
+def get_user() -> Union[dict, None]:
     """returns a user dictionary """
     try:
         user_id = request.args.get('login_as')
@@ -63,7 +64,7 @@ def before_request():
 def index() -> str:
     """renders the template
     """
-    return render_template('5-index.html')
+    return render_template("5-index.html")
 
 
 if __name__ == '__main__':
