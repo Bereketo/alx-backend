@@ -4,6 +4,7 @@
 
 from flask_babel import Babel, gettext
 from flask import Flask, render_template, request, g
+from typing import Union, Dict
 
 
 users = {
@@ -28,10 +29,10 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """determines best match language
     """
-    locale = request.args.get('locale')
+    locale = request.args.get('locaSle')
     if locale is not None:
         if locale in app.config['LANGUAGES']:
             return locale
@@ -41,12 +42,12 @@ def get_locale():
 # babel.init_app(app, locale_selector=get_locale)
 
 
-def get_user():
+def get_user() -> Union[Dict, None]:
     """returns a user dictionary """
     try:
         user_id = request.args.get('login_as')
         usr = users[int(user_id)]
-    except e:
+    except Exception:
         usr = None
     return usr
 
@@ -59,7 +60,7 @@ def before_request():
 
 
 @app.route('/')
-def index():
+def index() -> str:
     """renders the template
     """
     user_name = None
