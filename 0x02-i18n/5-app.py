@@ -63,15 +63,7 @@ def before_request():
 def index() -> str:
     """renders the template
     """
-    user_name = None
-    if hasattr(g, 'user') and isinstance(g.user, dict) and 'name' in g.user:
-        user_name = g.user['name']
-    not_logged_in = gettext('not_logged_in')
-    logged_in_as = gettext('logged_in_as')
-    if user_name is not None:
-        return render_template('5-index.html', user_name=user_name,
-                               logged=logged_in_as)
-    return render_template('5-index.html', not_logged=not_logged_in)
+    return render_template('5-index.html')
 
 
 if __name__ == '__main__':
