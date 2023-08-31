@@ -85,3 +85,4 @@ describe('createPushNotificationsJobs', () => {
     QUEUE.testMode.jobs[0].emit('complete');
   });
 });
+
